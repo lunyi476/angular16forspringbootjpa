@@ -1,0 +1,102 @@
+.datatable {
+    border: 0.5px solid #dddddd;
+    border-collapse: collapse;
+  }
+
+.divData {
+  float:left;
+  margin-left:180px;
+  width:35%;
+  height:500px;
+  border: thin solid #dddddd;
+  overflow:auto;
+}
+
+input {
+  pointer-events: none;
+}
+.list {
+  margin-top:40px;
+  position: absolute; 
+  width: 100%; 
+  overflow: auto;
+}
+
+.titletab {
+  margin-left:180px;
+  margin-bottom:10px;
+  width:77%;
+  border-bottom:1px solid;
+  font-family: Cosonlas;
+  font-size:22px;
+}
+
+.titleth {
+  font-family: Cosonlas;
+  font-size:22px;
+  border: none;
+  text-align:center;
+}
+
+.titlespan {
+  font-family: Cosonlas;
+  font-size:15px;
+}
+
+#thd {
+	font-size:20px;	
+}
+
+.headtable {
+  border:none;
+  width:735px;
+  background-color: #dddddd;
+}
+
+.divMid {
+  border: 1px solid#dddddd;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  float:left;
+  margin-left:10px;
+  width:5%; 
+  height:500px;
+}
+  tr,td,th {
+    border: 0.01em solid;
+    border-collapse: collapse;
+}
+
+div::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  display: none;
+}
+
+div::-webkit-scrollbar-track {
+  background: none;
+  border-width: 0;
+}
+div::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.25);
+  transition: background 250ms ease;
+  border-radius: 2px;
+  -moz-transition: background 250ms ease;
+  
+}
+div::-webkit-scrollbar-button {
+  display: none;
+}
+div::-webkit-scrollbar-track-piece {
+  display: none;
+}
+div::-webkit-scrollbar-corner {
+  display: none;
+}
+div::-webkit-resizer {
+  display: none;
+}
+div::-webkit-scrollbar {
+  display: initial;
+}

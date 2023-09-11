@@ -1,0 +1,47 @@
+
+<br><br><br><br>
+<table><tbody><thead id="thd"><tr><th style="text-align:center;">Log In<th></tr></thead>
+    <span class="titlespan">(For test, just typing name/password)</span></tbody></table>
+    <form  (ngSubmit) ="onSubmit()" [formGroup]="registrationForm">
+    <table>
+    <tbody>  
+        <tr>
+        <td>Name</td>
+        <td ><input id="name" formControlName="userName" required></td>        
+       </tr> 
+       <tr><td>
+        <div *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+            <div *ngIf="userName.errors.required">
+                Name is required.
+            </div>
+            <div *ngIf="userName.errors.minlength">
+                Name must be at least 4 characters long.
+            </div>
+        </div>
+  
+       </td></tr> 
+       <tr>
+        <td>Password</td>
+        <td ><input type ="password" formControlName="password" required></td>        
+       </tr>
+       <tr><td>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+            <div *ngIf="password.errors.required">
+                Password is required.
+            </div>
+            <div *ngIf="password.errors.minlength">
+                Password must be at least 6 characters long.
+            </div>
+        </div>
+  
+       </td></tr> 
+       <tr><td> <!-- cross-field (username and password) validation--  " -->
+        <div *ngIf="registrationForm.errors?.identityRevealed">
+            Password cannot be the same as user name.
+        </div> 
+       </td></tr>
+
+       <tr colspan="2"><td><button type="submit" [disabled]="!registrationForm.valid">Submit</button></td></tr>  
+    </tbody>
+    </table>
+  </form>

@@ -1,0 +1,22 @@
+table {
+    font-family: Cosonlas;
+    font-size:20px;
+    border-collapse: collapse;
+    width: 30%;
+    margin: 0 auto;
+  }
+  
+  td, th {
+    font-family:Consolas;
+    padding: 8px;
+  }
+  
+  #thd {
+      font-size:24px;	
+  }
+
+  .titlespan {
+    font-family: Cosonlas;
+    font-size:15px;
+  }
+  

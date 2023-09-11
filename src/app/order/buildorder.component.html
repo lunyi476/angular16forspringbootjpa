@@ -1,0 +1,70 @@
+<div class="list">
+  <table class="titletab"><tbody><thead><tr><th class="titleth">Build Order From Offer</th><tr></thead>
+    <span class="titlespan">(only one offer selection allowed)</span></tbody>
+  </table>
+  <form [formGroup]="headerFormGroup">
+    <div class="divData">
+      <table  class="headtable">
+            <tbody><thead><tr><th style="border:none;">Offer Available</th></tr></thead></tbody>
+        </table>
+        <table class="datatable"  style="width:100%;">
+            <tbody>
+                <tr>
+                  <ng-container *ngFor="let field of buildscreenNames;">        
+                    <th  style="font-weight:normal;">{{field}}</th>
+                  </ng-container>
+                </tr>
+                <ng-container *ngFor="let a of offerFormGroupNames; index as i">
+                  <tr id="{{a}}" formGroupName="{{a}}" (click) = "selectedLRow(a)"> 
+                    <ng-container *ngFor="let field of buildscreenNames"> 
+                      <td NOWRAP>
+                        <ng-container *ngIf="headerFormGroup.get(a).get(field).value as asVar"> 
+                          {{asVar}}
+                      </ng-container> 
+                        </td>
+                  </ng-container>
+                </tr> 
+              </ng-container>     
+            </tbody>
+          </table>
+      </div>
+  </form>
+
+  <div class="divMid">
+      <img src="{{currentSRimg}}"  (click)="moveOfferToR()" alt="Add Selected" (mouseover)="flipimg('rover','assets/images/mrover.gif')" (mouseout)="flipimg('rout','assets/images/mr.gif')">
+      <br><br>
+      <img src="{{currentOUimg}}"  (click)="moveOfferToL()" alt="Remove Selected" (mouseover)="flipimg('lover','assets/images/mlover.gif')" (mouseout)="flipimg('lout','assets/images/ml.gif')">
+     <br><br>
+      <button (click)="gotoOrder();">Go Order</button>
+    </div>
+
+  <form [formGroup]="headerFormGroupR">
+      <div class="divData" style="margin-left:10px;">
+        <table  class="headtable">
+            <tbody><thead><tr><th style="border:none;">Offer Selected</th></tr></thead></tbody>
+        </table>
+        <table class="datatable"  style="width:100%;">
+            <tbody>
+                <tr>
+                  <ng-container *ngFor="let field of buildscreenNames;">        
+                    <th  style="font-weight:normal;">{{field}}</th>
+                  </ng-container>
+                </tr>
+
+                <ng-container *ngFor="let a of offerFormGroupNamesR; index as i">
+                  <tr id="{{a}}" formGroupName="{{a}}" (click)="selectedRRow(a)"> 
+                    <ng-container *ngFor="let field of buildscreenNames"> 
+                        <td NOWRAP>
+                          <!-- <input style="border:0px;" size="10"  formControlName="{{field}}"> -->
+                          <ng-container *ngIf="headerFormGroupR.get(a).get(field).value as asVar"> 
+                            {{asVar}}
+                          </ng-container> 
+                        </td>
+                  </ng-container>
+                </tr>      
+            </ng-container>   
+            </tbody>
+        </table>
+      </div>
+    </form>
+</div>

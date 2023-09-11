@@ -1,0 +1,129 @@
+<br>
+<form [formGroup]="orderFormGroup">
+<table style="border-bottom:1px solid;">
+    <tbody>
+        <thead id="thd">
+    <tr>
+    <th style="text-align:center;">Order Information </th>
+    </tr>
+</thead><span style="font-family: Cosonlas; font-size:10;">(for new order, go to "Build Order")</span>
+</tbody>
+</table>
+<div id ="orderheader"> 
+<table>
+<tbody>
+    <ng-container *ngFor="let leng of namesLoop;">   
+        <tr>
+        <ng-container *ngFor="let field of printorderNames; index as k">        
+            <ng-container *ngIf="k>= (leng -4) && k< leng">
+                <th>{{field}}</th>
+                <td><input  size="12"  formControlName="{{field}}"></td>
+            </ng-container>    
+        </ng-container>
+       </tr>
+    </ng-container>
+    <ng-container *ngFor="let leng of namesLoop; last as islast; index as p;">   
+        <tr> 
+            <ng-container *ngIf="p < printorderNames.length && islast;">       
+               <ng-container *ngFor="let fd of printorderNames; index as y;">
+                    <ng-container *ngIf="y >= leng && y < printorderNames.length">
+                        <th>{{fd}}</th>
+                        <td><input  size="12" formControlName="{{fd}}"></td>
+                   </ng-container>
+                </ng-container>
+            </ng-container>    
+       </tr>
+    </ng-container>
+   
+
+</tbody>
+</table>
+ <!-- validation section-->
+<table>
+    <tbody>  
+       <tr><td>        
+                <ng-container *ngIf="orderFormGroup.get('item').invalid && (orderFormGroup.get('item').dirty || orderFormGroup.get('item').touched); else elseBlock;" class="alert alert-danger">
+                    <div class="alert alert-danger">
+                        <div *ngIf="orderFormGroup.get('item').errors.required;">
+                          Item is required.
+                      </div>
+                   </div>
+                </ng-container>
+                
+                <ng-template #elseBlock>
+                    <ng-container *ngIf="orderFormGroup.get('buyer').invalid && (orderFormGroup.get('buyer').dirty || orderFormGroup.get('buyer').touched); else otherBlock;">
+                      <div class="alert alert-danger">
+                        <div *ngIf="orderFormGroup.get('buyer').errors.required">
+                          Buyer is required.
+                          </div>
+                      </div>
+                    </ng-container>
+                </ng-template>
+                <ng-template #otherBlock>
+                      <ng-container *ngIf="orderFormGroup.get('currency').invalid && (orderFormGroup.get('currency').dirty || orderFormGroup.get('currency').touched); else Block4;">
+                        <div  class="alert alert-danger">
+                          <div *ngIf="orderFormGroup.get('currency').errors.required;">
+                              Currecncy is required.
+                          </div>
+                      </div>
+                      </ng-container>
+                </ng-template>
+                <ng-template #Block4>
+                        <ng-container *ngIf="orderFormGroup.get('lading_point').invalid && (orderFormGroup.get('lading_point').dirty || orderFormGroup.get('lading_point').touched); else Block5;">
+                          <div  class="alert alert-danger">
+                            <div *ngIf="orderFormGroup.get('lading_point').errors.required;">
+                                Lading Point is required.
+                            </div>
+                        </div>
+                        </ng-container>
+                </ng-template>
+                <ng-template #Block5>
+                    <ng-container *ngIf="orderFormGroup.get('tot_grs_value').invalid && (orderFormGroup.get('tot_grs_value').dirty || orderFormGroup.get('tot_grs_value').touched); else Block6;">
+                      <div  class="alert alert-danger">
+                        <div *ngIf="orderFormGroup.get('tot_grs_value').errors.required;">
+                            Total gross value is required.
+                        </div>
+                    </div>
+                    </ng-container>
+                </ng-template>
+                <ng-template #Block6>
+                    <ng-container *ngIf="orderFormGroup.get('tot_calc_cost').invalid && (orderFormGroup.get('tot_calc_cost').dirty || orderFormGroup.get('tot_calc_cost').touched); else Block7;">
+                      <div  class="alert alert-danger">
+                        <div *ngIf="orderFormGroup.get('tot_calc_cost').errors.required;">
+                            Total calculate cost is required.
+                        </div>
+                    </div>
+                    </ng-container>
+                </ng-template>
+                <ng-template #Block7>
+                    <ng-container *ngIf="orderFormGroup.get('tot_qty').invalid && (orderFormGroup.get('tot_qty').dirty || orderFormGroup.get('tot_qty').touched); else Block8;">
+                      <div  class="alert alert-danger">
+                        <div *ngIf="orderFormGroup.get('tot_qty').errors.required;">
+                            Total quantity is required.
+                        </div>
+                    </div>
+                    </ng-container>
+                </ng-template>
+                <ng-template #Block8>
+                    <ng-container *ngIf="orderFormGroup.get('tot_grs_wgt').invalid && (orderFormGroup.get('tot_grs_wgt').dirty || orderFormGroup.get('tot_grs_wgt').touched); else Block9;">
+                      <div  class="alert alert-danger">
+                        <div *ngIf="orderFormGroup.get('tot_grs_wgt').errors.required;">
+                            Total gross weight is required.
+                        </div>
+                    </div>
+                    </ng-container>
+               </ng-template> 
+               <ng-template #Block9>
+                <ng-container *ngIf="orderFormGroup.get('owner').invalid && (orderFormGroup.get('owner').dirty || orderFormGroup.get('owner').touched);">
+                  <div  class="alert alert-danger">
+                    <div *ngIf="orderFormGroup.get('owner').errors.required;">
+                        Owner is required.
+                    </div>
+                </div>
+                </ng-container>
+           </ng-template>                      
+                        
+         </td></tr>  
+    </tbody>
+ </table> 
+</div>

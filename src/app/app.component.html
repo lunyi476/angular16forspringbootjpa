@@ -1,0 +1,51 @@
+
+ 
+ <form [formGroup]="selectControl">
+<div id="main">
+     <ul id="bar">
+         <li><img  src="assets/images/logo2.png"  width="30" heigth="33"/> </li>
+          <ng-container *ngFor="let menu of links">             
+               <ng-container *ngIf="menu.text !='home' && menu.text !='login'">
+                    <ng-container [ngSwitch] ="menu.path">
+                         <li *ngSwitchCase="'addoffer'"><a   (click)="addOffer()" [ngClass] ="{'disa': isLoggedIn ==0 , 'enaba': isLoggedIn ==1} ">Add Offer</a></li>
+                         <li *ngSwitchCase="'newquote'" ><a  (click)="newQuote()" [ngClass] ="{'disa': isLoggedIn ==0, 'enaba': isLoggedIn ==1}">New Quote</a></li>
+                         <li *ngSwitchCase="'savequote'" ><a  (click) = "saveQuote()" [ngClass] ="{'disa': isLoggedIn ==0 , 'enaba': isLoggedIn ==1 }">Save</a></li>
+                         <li *ngSwitchCase="'deletequote'" ><a  (click) = "deleteQuote()" [ngClass] ="{'disa': isLoggedIn ==0, 'enaba': isLoggedIn ==1}">Delete</a></li>
+                         <li *ngSwitchCase="'selectobject'">
+                              <ng-container *ngIf="menu.text.includes('Quote')">
+                                 <select  id="qtSelect" formControlName="objectSelect" (change) = "selectedQuote()">  
+                                   <option selected disabled value="selected">Select Quote</option>                                                                          
+                                   <option  *ngFor="let qt of allQuotes" value="{{qt.request_no}}">{{qt.item}}</option>
+                                </select> 
+                              </ng-container> 
+                              <ng-container *ngIf="menu.text.includes('Order')">
+                                   <select id="odSelect" formControlName="objectSelect" (change) = "selectedOrder()">  
+                                     <option selected disabled value="selected">Select Order</option>                                                                          
+                                     <option  *ngFor="let od of allOrders" value="{{od.order_no}}">{{od.item}}</option>
+                                  </select> 
+                                </ng-container>                      
+                         </li>
+                         <li *ngSwitchCase="'buildorder'" ><a  (click)="buildOrder()" [ngClass] ="{'disa': isLoggedIn ==0, 'enaba': isLoggedIn ==1}">Build Order</a></li>
+                         <li *ngSwitchCase="'saveorder'" ><a  (click) = "saveOrder()" [ngClass] ="{'disa': isLoggedIn ==0 || disabled == 1, 'enaba': isLoggedIn ==1 }">Save</a></li>
+                         <li *ngSwitchCase="'deleteorder'" ><a  (click) = "deleteOrder()" [ngClass] ="{'disa': isLoggedIn ==0 || disabled == 1, 'enaba': isLoggedIn ==1}">Delete</a></li>
+                         
+                         <li *ngSwitchDefault> <a class="select-profile" routerLink="{{menu.path}}" [ngClass] ="{'disa': isLoggedIn ==0, 'enaba': isLoggedIn ==1}">{{menu.text}}</a></li>
+                    </ng-container>
+               </ng-container> 
+         </ng-container>
+        
+         <ng-container *ngIf="isLoggedIn == 0">   
+               <li><a routerLink="login" ><img  src="assets/images/login_img.png"  width="90" heigth="50"/></a></li>  
+          </ng-container>
+          <ng-container *ngIf="isLoggedIn == 1">
+               <li><a routerLink=""><img  src="assets/images/logout_img.png"  (click) = "logout()" width="90" heigth="50"/></a></li>  
+          </ng-container>
+                
+     </ul>  
+
+ </div>
+</form>
+<div style="width:100%;height:100%;">
+     <router-outlet #objRouterOutlet="outlet" (activate)='onActivate()'></router-outlet>
+</div>
+

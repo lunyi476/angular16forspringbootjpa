@@ -1,0 +1,8 @@
+<div  style="height:100px;" mat-dialog-content>
+    <p>{{data.message}}</p>
+  </div>
+  <br>
+  <div mat-dialog-actions>
+    <button style="width:60px;" mat-button cdkFocusInitial (click) = "delete()">Delete</button>
+    <button style="margin-left:30px; width:60px;" mat-button cdkFocusInitial (click) = "cancel()">Cancel</button>
+  </div>

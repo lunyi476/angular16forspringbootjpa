@@ -1,0 +1,154 @@
+
+  <br>
+  <form [formGroup]="quoteFormGroup">
+<table style="width:70%;margin-left:230px;border-bottom:1px solid;"><tbody><thead id="thd"><tr><th style="text-align:center;">Request Information<th></tr></thead></tbody></table>
+  <div id ="quoteheader"> 
+  <table style="width:100%;">
+  <tbody>
+      <tr>
+        <ng-container *ngFor="let field of fieldquoteNames; index as k">        
+          <th *ngIf="k <= (fieldquoteNames.length -4)/2 && field !='request_no' && field !='modify_user' && field !='modify_ts' && field !='offers'">{{field}}</th>
+        </ng-container>
+      </tr>
+      <tr> 
+        <ng-container *ngFor="let field of fieldquoteNames; index as k"> 
+          <td *ngIf="k <= (fieldquoteNames.length -4)/2 && field !='request_no' && field !='modify_user' && field !='modify_ts' && field !='offers'" >
+            <input  id="{{field}}" size="16"  formControlName="{{field}}"></td>
+       </ng-container>
+     </tr>      
+  </tbody>
+  </table>
+  <table style="width:100%;">
+      <tbody>
+          <tr >
+            <ng-container *ngFor="let field of fieldquoteNames; index as k">        
+              <th *ngIf="k > (fieldquoteNames.length -4)/2 && field !='request_no' && field !='modify_user' && field !='modify_ts' && field !='offers'">{{field}}</th>
+            </ng-container>
+          </tr>
+          <tr> 
+            <ng-container *ngFor="let field of fieldquoteNames; index as k"> 
+              <td *ngIf="k > (fieldquoteNames.length -4)/2 && field !='request_no' && field !='modify_user' && field !='modify_ts' && field !='offers'" >
+                <input  size="16"  formControlName="{{field}}">
+              </td>
+           </ng-container>
+         </tr> 
+
+         <!-- validation message based on internal form validation-->
+         <tr><td>
+          <div *ngIf="quoteFormGroup.get('owner').invalid && (quoteFormGroup.get('owner').dirty || quoteFormGroup.get('owner').touched); else elseBlock;" class="alert alert-danger">
+              <div *ngIf="quoteFormGroup.get('owner').errors.required; else elseBlock">
+                  Owner is required.
+              </div>
+          </div>
+          <ng-template #elseBlock>
+            <ng-container *ngIf="quoteFormGroup.get('item').invalid && (quoteFormGroup.get('item').dirty || quoteFormGroup.get('item').touched); else otherBlock;">
+              <div class="alert alert-danger">
+                <div *ngIf="quoteFormGroup.get('item').errors.required">
+                  Item is required.
+                  </div>
+               </div>
+            </ng-container>
+            <ng-template #otherBlock>
+              <ng-container *ngIf="quoteFormGroup.get('requested_by').invalid && (quoteFormGroup.get('requested_by').dirty || quoteFormGroup.get('requested_by').touched); else Block4;">
+                <div  class="alert alert-danger">
+                  <div *ngIf="quoteFormGroup.get('requested_by').errors.required;">
+                      Requested By is required.
+                  </div>
+              </div>
+              </ng-container>
+              <ng-template #Block4>
+                <ng-container *ngIf="quoteFormGroup.get('request_price').invalid && (quoteFormGroup.get('request_price').dirty || quoteFormGroup.get('request_price').touched); else Block5;">
+                  <div  class="alert alert-danger">
+                    <div *ngIf="quoteFormGroup.get('request_price').errors.required;">
+                        Request Price By is required.
+                    </div>
+                </div>
+                </ng-container>
+                <ng-template #Block5>
+                  <ng-container *ngIf="quoteFormGroup.get('allocated_qty').invalid && (quoteFormGroup.get('allocated_qty').dirty || quoteFormGroup.get('allocated_qty').touched);">
+                    <div  class="alert alert-danger">
+                      <div *ngIf="quoteFormGroup.get('allocated_qty').errors.required;">
+                          Allocated Qty is required.
+                      </div>
+                  </div>
+                  </ng-container>
+                </ng-template>
+              </ng-template>
+            </ng-template> 
+          </ng-template>
+         </td></tr> 
+      </tbody>
+   </table> 
+  </div>
+
+  <br> <br>
+
+  <table style="width:70%;margin-left:230px;border-bottom:1px solid;"><tbody><thead id="thd"><tr><th style="text-align:center;">Offer Detail Information<th></tr></thead></tbody></table>
+    
+    <div id="detail">       
+              <table style="width:100%;">
+              <tbody>				
+                <tr>
+                  <td><button style="border:none;font-family:Consolas;font-weight:bold;" type="button" (click)="deleteRow()">Delete</button></td>                            
+                  <ng-container *ngFor="let field of fieldofferNames; index as k">        
+                    <th *ngIf="field !='request_no' && field !='offer_no' && field !='owner'">{{field}}</th>
+                  </ng-container>
+                </tr>
+              <ng-container *ngFor="let a of offerFormGroupNames; index as k; ">
+                    <tr  formGroupName = "{{a}}">
+                      <td><input    type="checkbox"  (click)="checkedBox(a, $event)"></td>
+                      <ng-container *ngFor="let field of fieldofferNames; index as i"> 
+                        <td *ngIf="field !='request_no' && field !='offer_no' && field !='owner'" >
+                          <input id = "{{a}}{{field}}" size="16"  formControlName="{{field}}">
+                        </td>
+                      </ng-container>
+                    </tr> 
+                  
+                    <!-- validation -->
+                 <tr><td>   
+                <ng-container *ngIf="quoteFormGroup.get(a) != null">
+                   
+                    <ng-container *ngIf="quoteFormGroup.get(a).get('item').invalid && (quoteFormGroup.get(a).get('item').dirty || quoteFormGroup.get(a).get('item').touched); else elseBlock;" class="alert alert-danger">
+                        <div class="alert alert-danger">
+                            <div *ngIf="quoteFormGroup.get(a).get('item').errors.required;">
+                              Item is required.
+                          </div>
+                       </div>
+                    </ng-container>
+                    
+                    <ng-template #elseBlock>
+                        <ng-container *ngIf="quoteFormGroup.get(a).get('buyer').invalid && (quoteFormGroup.get(a).get('buyer').dirty || quoteFormGroup.get(a).get('buyer').touched); else otherBlock;">
+                          <div class="alert alert-danger">
+                            <div *ngIf="quoteFormGroup.get(a).get('buyer').errors.required">
+                              Buyer is required.
+                              </div>
+                          </div>
+                        </ng-container>
+                    </ng-template>
+                    <ng-template #otherBlock>
+                          <ng-container *ngIf="quoteFormGroup.get(a).get('currency').invalid && (quoteFormGroup.get(a).get('currency').dirty || quoteFormGroup.get(a).get('currency').touched); else Block4;">
+                            <div  class="alert alert-danger">
+                              <div *ngIf="quoteFormGroup.get(a).get('currency').errors.required;">
+                                  Currecncy is required.
+                              </div>
+                          </div>
+                          </ng-container>
+                    </ng-template>
+                    <ng-template #Block4>
+                            <ng-container *ngIf="quoteFormGroup.get(a).get('lading_point').invalid && (quoteFormGroup.get(a).get('lading_point').dirty || quoteFormGroup.get(a).get('lading_point').touched);">
+                              <div  class="alert alert-danger">
+                                <div *ngIf="quoteFormGroup.get(a).get('lading_point').errors.required;">
+                                    Lading Point is required.
+                                </div>
+                            </div>
+                            </ng-container>
+                    </ng-template>
+                       
+              </ng-container>      
+             </td></tr>  
+
+          </ng-container>
+        </tbody>
+      </table>  
+    </div>  
+  </form>

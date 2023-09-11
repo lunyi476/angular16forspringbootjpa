@@ -1,0 +1,71 @@
+#detail {
+	overflow: auto; 
+  width:70%; 
+  margin-left:230px;
+  }
+
+#quoteheader {
+    overflow: auto; 
+    width:70%; 
+    margin-left:230px;
+    }
+  
+table {
+  font-family: Cosonlas;
+  font-size:14px;
+  border-collapse: collapse;
+  width: 70%;
+  margin: 0 auto;
+}
+
+td, th {
+  font-family:Consolas;
+  text-align: left;
+  padding: 8px;
+}
+
+#thd {
+	font-size:24px;	
+}
+
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+input {
+  size:"12";
+}
+
+div::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  display: none;
+}
+
+div::-webkit-scrollbar-track {
+  background: none;
+  border-width: 0;
+}
+div::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.25);
+  transition: background 250ms ease;
+  border-radius: 2px;
+  -moz-transition: background 250ms ease;
+  
+}
+div::-webkit-scrollbar-button {
+  display: none;
+}
+div::-webkit-scrollbar-track-piece {
+  display: none;
+}
+div::-webkit-scrollbar-corner {
+  display: none;
+}
+div::-webkit-resizer {
+  display: none;
+}
+div::-webkit-scrollbar {
+  display: initial;
+}
