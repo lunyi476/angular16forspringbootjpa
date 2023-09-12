@@ -27,68 +27,65 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-##############  how do I migrated this project from angular 9 to 16 ########################
+##############  how do I migrated this project from angular 9 to 16 ########################  
 
-(1) download one latest angular project from angular website/git-site
-(2) compare its angular.json , package.json two files to my project two files
-and copy package.json and update my package json, and updated necessary part of my angular.json (few lines only)
-(3) deleted package-lock.json file, .angular, and node_modules folders in my project local
-(4) run:  npm install
-(5) run: npm install missing package (I can check the differences in package.json)
-(6) run:  npm list (important packages version) (such as: @angular/cli, @angular/webpack, @angular-devkit/build_angular, @angular-devkit/compiler, ....)
-(7) run:  ng serve, to fix error if any, and run webpack
-(8) debug it at browser side in app (loaded sources by browser such as chrome)
+
+(1) download one latest angular project from angular website/git-site  
+
+(2) compare its angular.json , package.json two files to my project two files  
+and copy package.json and update my package json, and updated necessary part of my angular.json (few lines only)  
+
+(3) deleted package-lock.json file, .angular, and node_modules folders in my project local  
+
+(4) run:  npm install  
+
+(5) run: npm install missing package (I can check the differences in package.json)  
+
+(6) run:  npm list (important packages version) (such as: @angular/cli, @angular/webpack, @angular-devkit/build_angular, @angular-devkit/compiler, ....)  
+
+(7) run:  ng serve, to fix error if any, and run webpack  
+
+(8) debug it at browser side in app (loaded sources by browser such as chrome)  
+
 (9) to resolve debug not working at Chrome/Edges (source code not loaded at top/webpack:// folder and webpack not loaded as source code);
 compare angular.json two files and change "polyfills" field to following sample angular.json setting.
-change to:  "polyfills": ["zone.js"],   "polyfills": ["zone.js", "zone.js/testing"],
-
-finally, run:   ng serve  and result as belows:
+change to:  "polyfills": ["zone.js"],   "polyfills": ["zone.js", "zone.js/testing"],  
 
 
-Thank you for sharing pseudonymous usage data. Should you change your mind, the following
-command will disable this feature entirely:
-
-    ng analytics disable
-
-Global setting: enabled
-Local setting: enabled
-Effective status: enabled
-⠋ Generating browser application bundles (phase: setup)...    TypeScript compiler options "target" and "useDefineForClassFields" are set to "ES2022" and "false" respectively by the Angular CLI. To control ECMA version and features use the Browerslist configuration. For more information, see https://angular.io/guide/build#configuring-browser-compatibility
-    NOTE: You can set the "target" to "ES2022" in the project's tsconfig to remove this warning.
-✔ Browser application bundle generation complete.
-
-Initial Chunk Files   | Names         |  Raw Size
-vendor.js             | vendor        |   3.48 MB | 
-styles.css, styles.js | styles        | 333.72 kB | 
-polyfills.js          | polyfills     | 333.18 kB | 
-main.js               | main          | 230.23 kB | 
-runtime.js            | runtime       |   6.54 kB | 
-
-                      | Initial Total |   4.36 MB
-
-Build at: 2023-07-27T18:50:58.584Z - Hash: b6b01e25cb7f473b - Time: 8376ms
-
-Warning: C:/angular_springboot_jpa/angular8forspringbootjpa/src/polyfills.ts is part of the TypeScript compilation but it's unused.
-Add only entry points to the 'files' or 'include' properties in your tsconfig.
-
-** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
-
-Compiled successfully.
-
-######### regarding polyfills.ts, without zone.js specified browser will not load source codes, below either way should work 
-(1) add "polyfills": ["zone.js"] or   "polyfills": ["zone.js", "zone.js/testing"] in angular.json
-or
-(2) specify polyfills.ts location at tsconfig.ts (maybe angular.json file) and add content inside polyfills.ts: 
-/**
- * Zone JS is required by default for Angular itself.
- */
-import 'zone.js';  // Included with Angular CLI.
+finally, run:   ng serve  and result as belows:  
 
 
 
-########## chnage ES2015 and 2018 to ES2022 in tsconfig file to remove warning 
- "target": "ES2022",
-    "lib": [
-      "es2022",
-      "dom"
+  
+
+
+######### regarding polyfills.ts, without zone.js specified browser will not load source codes, below either way should work  
+
+(1) add "polyfills": ["zone.js"] or   "polyfills": ["zone.js", "zone.js/testing"] in angular.json  
+
+or  
+
+(2) specify polyfills.ts location at tsconfig.ts (maybe angular.json file) and add content inside polyfills.ts:  
+
+/**  
+
+ * Zone JS is required by default for Angular itself.  
+
+ */  
+
+import 'zone.js';  // Included with Angular CLI.  
+
+
+
+
+########## chnage ES2015 and 2018 to ES2022 in tsconfig file to remove warning  
+
+ "target": "ES2022",  
+
+    "lib": [  
+
+      "es2022",  
+
+      "dom"  
+      
     ]
