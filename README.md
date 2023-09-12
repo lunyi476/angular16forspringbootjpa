@@ -75,8 +75,8 @@ Add only entry points to the 'files' or 'include' properties in your tsconfig.
 
 Compiled successfully.
 
-############### regarding polyfills.ts, without zone.js specified browser will not load source codes, below either way should work  ###########################
-(1) "polyfills": ["zone.js"] or   "polyfills": ["zone.js", "zone.js/testing"] in angular.json
+######### regarding polyfills.ts, without zone.js specified browser will not load source codes, below either way should work 
+(1) add "polyfills": ["zone.js"] or   "polyfills": ["zone.js", "zone.js/testing"] in angular.json
 or
 (2) specify polyfills.ts location at tsconfig.ts (maybe angular.json file) and add content inside polyfills.ts: 
 /**
@@ -86,7 +86,7 @@ import 'zone.js';  // Included with Angular CLI.
 
 
 
-############## chnage ES2015 and 2018 to ES2022 in tsconfig file to remove warning ##########################
+########## chnage ES2015 and 2018 to ES2022 in tsconfig file to remove warning 
  "target": "ES2022",
     "lib": [
       "es2022",
