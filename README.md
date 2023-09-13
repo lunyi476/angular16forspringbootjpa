@@ -1,4 +1,4 @@
-# Springbootjpaangular8
+# Springbootjpaangular16
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
 
@@ -27,10 +27,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-##############  how do I migrated this project from angular 9 to 16 ########################  
+##############  how do I migrated this project from angular 8 to 16 ########################  
 
 
-(1) download one latest angular project from angular website/git-site  
+(1) download one latest angular project (for example, Angular 16.1.16) from angular website/git-site  
 
 (2) compare its angular.json , package.json two files to my project two files  
 and copy package.json and update my package json, and updated necessary part of my angular.json (few lines only)  
