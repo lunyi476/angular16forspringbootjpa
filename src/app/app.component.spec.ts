@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestBed, async,  fakeAsync, tick, flush } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { Quotes}  from './Quotes';
+import { Quotes}  from './quotes';
 import { from, defer, of } from 'rxjs';
 import { HttptoserverService} from './httptoserver.service';
 import { Router, ActivatedRoute} from '@angular/router';
