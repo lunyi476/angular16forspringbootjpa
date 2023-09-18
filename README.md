@@ -52,11 +52,9 @@ compare angular.json two files and change "polyfills" field to following sample 
 change to:  "polyfills": ["zone.js"],   "polyfills": ["zone.js", "zone.js/testing"],  
 
 
-finally, run:   ng serve  and result as belows:  
+finally, run  
 
 
-
-  
 
 
 ######### regarding polyfills.ts, without zone.js specified browser will not load source codes, below either way should work  
