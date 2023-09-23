@@ -1,4 +1,5 @@
-import { enableProdMode, ApplicationRef } from '@angular/core';
+/* import { enableProdMode } from '@angular/core';
+const ApplicationRef = import ('@angular/core');
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
@@ -9,7 +10,15 @@ if (environment.production) {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule).then((module) => { 
-  let applicationRef = module.injector.get(ApplicationRef); 
-  let rootComponentRef = applicationRef.components[0];  
+  const applicationRef = module.injector.get(ApplicationRef); 
+  const rootComponentRef = applicationRef.components[0];  
   console.log(rootComponentRef.componentType.name);  
-}).catch(err => console.error(err));
+}).catch(err => console.error(err)); */
+
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module';
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
