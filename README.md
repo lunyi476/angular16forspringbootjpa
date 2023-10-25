@@ -87,3 +87,7 @@ import 'zone.js';  // Included with Angular CLI.
       "dom"  
       
     ]
+
+    ************** Test error ************************
+
+      "allowJs": true, it will cause "Browser application bundle ....." error
