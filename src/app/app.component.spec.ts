@@ -105,9 +105,11 @@ describe('AppComponent', () => {
 
   // Use Done() test Asynchronous task
   it('#should get all quotes directly from Mock service',
-    (done: DoneFn) => {
+    (done: DoneFn) => { // Jasmine knows this done argument meaning which means this call is async call
       mockHttptoserverService.getQuotes().subscribe(value => {
           expect(value[0].request_no).not.toBeNull();
+      // Jasmine will know this async call finished at this time. Otherwise wait here
+      // If some function will fail without the async call results to be completed
       done();
     });
   });
