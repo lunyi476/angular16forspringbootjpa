@@ -78,8 +78,8 @@ describe('LoginComponent', () => {
       activities finish. In this case, it waits for the error handler's setTimeout().
    * **/
 
-  beforeEach( async (() => { 
-    TestBed.configureTestingModule({
+  beforeEach( async () => { 
+    await TestBed.configureTestingModule({
       imports: [ BrowserAnimationsModule, HttpClientTestingModule,  BrowserModule, OverlayModule,
          MatDialogModule, FormsModule, ReactiveFormsModule, AppRoutingModule ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -94,7 +94,7 @@ describe('LoginComponent', () => {
     // this is Mock
     httpTestingController = TestBed.inject(HttpTestingController);
     fixture = TestBed.createComponent(LoginComponent);
-  })); 
+  }); 
 
   it('should create', () => {
     component = fixture.componentInstance;

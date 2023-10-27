@@ -82,9 +82,9 @@ fdescribe('QuoteComponent', () => {
   let mockHttptoserverService = new MockhHttptoserverService();
   
   // Because compileComponents is asynchronous, it uses the async utility function 
-  beforeEach(async(() => {
+  beforeEach(async () => {
     // configure testing module, just like NgModule in project
-    TestBed.configureTestingModule({
+    let tb = TestBed.configureTestingModule({
       providers:    [ 
         { provide: HttptoserverService, useValue: mockHttptoserverService},
         { provide: MessageService, userClass: MessageService },
@@ -95,8 +95,9 @@ fdescribe('QuoteComponent', () => {
       imports : [HttpClientModule, MatDialogModule, ReactiveFormsModule, 
         FormsModule,   RouterModule,  RouterTestingModule  ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]    
-    }).compileComponents();  
-  }));
+    });
+    await tb.compileComponents();  
+  });
 
   beforeEach(() => {
     TestBed.inject (HttptoserverService);
@@ -186,9 +187,9 @@ fdescribe('QuoteComponent', () => {
 
 
   // Asynchronous way testing, similar to fakeAsync
-  it('should get quote asynchronously and display',  async (() => {
+  it('should get quote asynchronously and display',  async () => {
     let d: Quotes;
-    getQuoteAsync(1, mockHttptoserverService).then<Quotes>( value => d = <Quotes>value);
+    await getQuoteAsync(1, mockHttptoserverService).then<Quotes>( value => d = <Quotes>value);
     // wait for async getQuote, otherwise, offer and quote are null
     fixture.whenStable().then(() => { 
       fixture.detectChanges();        
@@ -208,6 +209,6 @@ fdescribe('QuoteComponent', () => {
     let detail = fixture.nativeElement.querySelector("#offerFormGroup_1item") as HTMLInputElement;
     expect(detail.value != null && (detail.value =='food' || detail.value =='beef')).toBeTrue();
     });
-  }));
+  });
 
 });

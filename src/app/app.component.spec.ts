@@ -58,8 +58,8 @@ describe('AppComponent', () => {
   let mockHttptoserverService = new MockhHttptoserverService();
   let httpClient : HttpClient;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,  MatDialogModule, BrowserAnimationsModule,
         BrowserModule,ReactiveFormsModule, AppRoutingModule,
@@ -88,7 +88,7 @@ describe('AppComponent', () => {
         { privide: NavbarService, useClass: NavbarService}
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     mockHttptoserverService = new MockhHttptoserverService();
