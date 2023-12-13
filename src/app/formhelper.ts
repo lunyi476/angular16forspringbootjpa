@@ -10,7 +10,7 @@ import { ToFromJSon } from './tofromjson';
  */
 /** Functions to transfer data from/to FormGroup */
 export function createHeaderGroup(fieldNamesInHeader: string[], reqHeaderNames: string[]): FormGroup {
-    let headerGroup = new FormGroup({});
+    let headerGroup =  new FormGroup({});
 
     for (let i = 0; i < fieldNamesInHeader.length; i++) {
         if (reqHeaderNames.includes(fieldNamesInHeader[i])) {

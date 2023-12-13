@@ -1,4 +1,4 @@
-import { AppRoutingModule } from './../app-routing.module';
+
 import { async,  TestBed, ComponentFixture } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { HttpClientTestingModule,    HttpTestingController, TestRequest } from '@angular/common/http/testing';

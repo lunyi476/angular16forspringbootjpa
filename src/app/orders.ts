@@ -171,3 +171,4 @@ export const printNamesInOrder =['owner','item',  'description',  'order_date',
 'status','buyer','supplier','vendor_name','manufacturer', 'carrier','delivery_terms','payment_type',
 'payment_terms','currency','origin_cntry','first_ship_date','last_ship_date','lading_point','final_dest',
 'tot_grs_value','tot_calc_cost','tot_qty','tot_grs_wgt'];
+

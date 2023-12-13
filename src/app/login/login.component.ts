@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavbarService } from '../navbar.service';
 import { HttptoserverService} from '../httptoserver.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { identityRevealedValidator } from './password.validator';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService} from '../message.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { NgIf } from '@angular/common';
 
 
 /**
@@ -14,9 +15,11 @@ import { Subscription } from 'rxjs';
  * 08/2020
  */
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    standalone: true,
+    imports: [ReactiveFormsModule, NgIf]
 })
 export class LoginComponent implements OnInit, OnDestroy {
   // For disable or enable menus

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgModuleRef, NgModule } from '@angular/core';
 import { HttpClient,  HttpResponse,HttpParams, HttpHeaders} from '@angular/common/http';
 
 import { Observable} from 'rxjs';
@@ -15,12 +15,13 @@ import { Offers } from './offers';
  * 08/2020
  */                            
 /** handle communication to server side */
-@Injectable({
+ @Injectable({
   providedIn: 'root'
-})
+}) 
 export class HttptoserverService extends BaseserviceService {
   baseUrl = 'http://localhost:5000';  // spring boot server
  
+
   constructor( public http: HttpClient, messageServiceChild: MessageService) {
     super(messageServiceChild); 
    }

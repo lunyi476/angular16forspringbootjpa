@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'; 
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core'; 
 import { Quotes, fieldNamesInQuote, CQuotes } from '../quotes';
-import { FormGroup, AbstractControl} from '@angular/forms';
+import { FormGroup, AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { Offers, fieldNamesInOffer } from '../offers';
 import { HttpResponse,HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,15 +8,19 @@ import { HttptoserverService } from '../httptoserver.service';
 import { MessageService } from '../message.service';
 import {  Subscription } from 'rxjs';
 import { createHeaderGroup, addDetailGroup,resetDataToFormGroup, transferFormDataToPostData }  from '../formhelper';
-
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { NgFor, NgIf } from '@angular/common';
 /**
  * @author: lyi
  * 08/2020
  */
 @Component({
-  selector: 'app-quote',
-  templateUrl: './quote.component.html',
-  styleUrls: ['./quote.component.css']
+    selector: 'app-quote',
+    templateUrl: './quote.component.html',
+    styleUrls: ['./quote.component.css'],
+    standalone: true,
+    imports: [ReactiveFormsModule, NgFor, NgIf]
 })
 export class QuoteComponent implements OnInit, OnDestroy {
   // For help of dynamic print HTML form, initial it and prevent 'undefined'
@@ -120,11 +124,12 @@ export class QuoteComponent implements OnInit, OnDestroy {
    *
    */
   constructor (private httpService : HttptoserverService,
-    public dialog: MatDialog,  public msgService: MessageService) {  
+  public dialog: MatDialog,  public msgService: MessageService, private route: ActivatedRoute) { 
+      
   }
   
   ngOnInit () {    
-      this.quoteFormGroup = createHeaderGroup(this.fieldquoteNames, this.reqquoteNames);        
+      this.quoteFormGroup = createHeaderGroup(this.fieldquoteNames, this.reqquoteNames);  
   }
 
   

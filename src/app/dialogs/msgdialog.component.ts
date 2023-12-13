@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MsgDialogData} from './msg-dialog-data';
 
 /**
@@ -7,9 +7,11 @@ import { MsgDialogData} from './msg-dialog-data';
  * 08/2020
  */
 @Component({
-  selector: 'app-msgdialog',
-  templateUrl: './msgdialog.component.html',
-  styleUrls: ['./msgdialog.component.css']
+    selector: 'app-msgdialog',
+    templateUrl: './msgdialog.component.html',
+    styleUrls: ['./msgdialog.component.css'],
+    standalone: true,
+    imports: [MatDialogModule]
 })
 export class MsgdialogComponent implements OnInit {
 

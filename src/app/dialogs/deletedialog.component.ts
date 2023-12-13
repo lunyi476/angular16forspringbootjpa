@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MsgDialogData } from './msg-dialog-data';
 
 
@@ -8,9 +8,11 @@ import { MsgDialogData } from './msg-dialog-data';
  * 08/2020
  */
 @Component({
-selector: 'deletedialog-component',
-templateUrl: './deletedialog.component.html',
-styleUrls: ['./deletedialog.component.css']
+    selector: 'deletedialog-component',
+    templateUrl: './deletedialog.component.html',
+    styleUrls: ['./deletedialog.component.css'],
+    standalone: true,
+    imports: [MatDialogModule]
 })
 export class DeletedialogComponent implements OnInit {
 

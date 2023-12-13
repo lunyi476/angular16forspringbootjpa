@@ -85,17 +85,16 @@ fdescribe('QuoteComponent', () => {
   beforeEach(async () => {
     // configure testing module, just like NgModule in project
     let tb = TestBed.configureTestingModule({
-      providers:    [ 
-        { provide: HttptoserverService, useValue: mockHttptoserverService},
+    providers: [
+        { provide: HttptoserverService, useValue: mockHttptoserverService },
         { provide: MessageService, userClass: MessageService },
         MatDialog,
         { provide: ElementRef, useClass: MockElementRef }
-      ],
-      declarations: [ QuoteComponent ],
-      imports : [HttpClientModule, MatDialogModule, ReactiveFormsModule, 
-        FormsModule,   RouterModule,  RouterTestingModule  ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]    
-    });
+    ],
+    imports: [HttpClientModule, MatDialogModule, ReactiveFormsModule,
+        FormsModule, RouterModule, RouterTestingModule, QuoteComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+});
     await tb.compileComponents();  
   });
 
@@ -141,6 +140,7 @@ fdescribe('QuoteComponent', () => {
     );
 
     // await here until after flushing the observable to get the quote
+    // Tick can also be used with no argument, in which case it waits until all the microtasks are done (when promises are resolved for example).
     tick();
   
     component.quote = d;

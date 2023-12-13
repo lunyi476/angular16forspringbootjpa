@@ -18,7 +18,23 @@ platformBrowserDynamic().bootstrapModule(AppModule).then((module) => {
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { AppModule } from './app/app.module';
+import { importProvidersFrom } from '@angular/core';
+import { AppComponent } from './app/app.component';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { withInterceptorsFromDi, provideHttpClient, HttpClientJsonpModule } from '@angular/common/http';
+import { routesApp }  from './app/app-routing';
+import { provideRouter } from '@angular/router';
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+    providers: [
+        provideRouter(routesApp),
+        importProvidersFrom(ReactiveFormsModule, BrowserModule, MatDialogModule, HttpClientJsonpModule),
+        provideHttpClient(withInterceptorsFromDi()),
+        provideAnimations()
+    ]
+}).then ( (module) => { 
+  window['rootInjector'] = module.injector;
+} ).catch(err => console.error(err));

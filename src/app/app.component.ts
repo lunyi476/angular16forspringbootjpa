@@ -1,4 +1,4 @@
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet, RouterLink } from '@angular/router';
 import { ViewChild,  Component, ChangeDetectionStrategy,  ChangeDetectorRef} from '@angular/core'; 
 import { NavbarService } from './navbar.service';
 import { NavigationStart, NavigationEnd } from '@angular/router';
@@ -6,23 +6,25 @@ import { QuoteComponent } from './quote/quote.component';
 import { HttptoserverService} from './httptoserver.service';
 import { Quotes } from './quotes';
 import { MessageService} from './message.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Orders } from './orders';
 import { OrderComponent } from './order/order.component';
 import { DeletedialogComponent } from './dialogs/deletedialog.component';
 import { deletemsgqt, deletemsgod } from './dialogs/msg-dialog-data';
-
+import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgClass, NgSwitchDefault } from '@angular/common';
 
 /**
  * @author: lyi
  * 08/2020
  */
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  changeDetection: ChangeDetectionStrategy.Default,  //.OnPush,
-  styleUrls: ['./app.component.css'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    changeDetection: ChangeDetectionStrategy.Default,
+    styleUrls: ['./app.component.css'],
+    standalone: true,
+    imports: [ReactiveFormsModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgClass, NgSwitchDefault, RouterLink, RouterOutlet]
 })
 export class AppComponent  {
     title = 'springbootjpaangular8';

@@ -11,7 +11,6 @@ import { ElementRef } from '@angular/core';
 import { NavbarService } from './navbar.service';
 import { MatDialogModule,  MatDialog } from '@angular/material/dialog';
 import { By, BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -60,34 +59,34 @@ describe('AppComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,  MatDialogModule, BrowserAnimationsModule,
-        BrowserModule,ReactiveFormsModule, AppRoutingModule,
-        HttpClientTestingModule
-      ],
-      declarations: [
+    imports: [
+        RouterTestingModule, MatDialogModule, BrowserAnimationsModule,
+        BrowserModule, ReactiveFormsModule, AppRoutingModule,
+        HttpClientTestingModule,
         AppComponent
-      ],
-      providers:    [ // Mock Data better for unit testing because its isolation
-        { provide: HttptoserverService, useValue: mockHttptoserverService},
+    ],
+    providers: [
+        { provide: HttptoserverService, useValue: mockHttptoserverService },
         MatDialog,
         {
-          provide: ActivatedRoute,
-          useValue: {
-              snapshot: {
-                  paramMap: {
-                      get(): string {
-                          return '123';
-                      },
-                  },
-              },
-          },
+            provide: ActivatedRoute,
+            useValue: {
+                snapshot: {
+                    paramMap: {
+                        get(): string {
+                            return '123';
+                        },
+                    },
+                },
+            },
         },
-        { provider: Router, useClass: class { navigate = jasmine.createSpy("navigate") } },
+        { provider: Router, useClass: class {
+                navigate = jasmine.createSpy("navigate");
+            } },
         { provide: ElementRef, useClass: MockElementRef },
-        { privide: NavbarService, useClass: NavbarService}
-      ],
-    }).compileComponents();
+        { privide: NavbarService, useClass: NavbarService }
+    ],
+}).compileComponents();  // https://www.concretepage.com/angular/angular-testbed-compilecomponents
   });
 
   beforeEach(() => {
@@ -98,6 +97,11 @@ describe('AppComponent', () => {
   })
 
   it('should create the app', () => {
+    /**
+     * 
+     * We should create component only after its compilations. Hence we must call createComponent() 
+     * only after compileComponents(). The compileComponents() is asynchronous code whereas createComponent() is synchronous code
+     */
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();

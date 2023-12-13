@@ -1,6 +1,6 @@
 import { ActivatedRoute} from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core'; 
-import { FormGroup, AbstractControl} from '@angular/forms';
+import { FormGroup, AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { Orders, printNamesInOrder, fieldNamesInOrder, COrders } from '../orders';
 import { HttpResponse,HttpErrorResponse } from '@angular/common/http';
 import { MatDialog} from '@angular/material/dialog';
@@ -9,6 +9,7 @@ import { MessageService} from '../message.service';
 import { createHeaderGroup, resetDataToFormGroup, transferFormDataToPostData }  from '../formhelper';
 import { Offers } from '../offers';
 import { Subscription } from 'rxjs';
+import { NgFor, NgIf } from '@angular/common';
 
 
 /**
@@ -16,9 +17,11 @@ import { Subscription } from 'rxjs';
  * 08/2020
  */
 @Component({
-  selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+    selector: 'app-order',
+    templateUrl: './order.component.html',
+    styleUrls: ['./order.component.css'],
+    standalone: true,
+    imports: [ReactiveFormsModule, NgFor, NgIf]
 })
 export class OrderComponent implements OnInit, OnDestroy {
   // dynamic print screen help

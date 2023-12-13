@@ -4,19 +4,22 @@ import { Router } from '@angular/router';
 import { NavbarService} from '../navbar.service';
 import { HttptoserverService } from '../httptoserver.service';
 import { Offers,fieldNamesInOffer, notprintNamesBuild, printNamesBuild, COffers  } from '../offers';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { createHeaderGroup, resetDataToFormGroup, transferFormDataToPostData }  from '../formhelper';
 import { AppComponent } from '../app.component';
 import { Subscription } from 'rxjs';
+import { NgFor, NgIf } from '@angular/common';
 
 /**
  * @author: lyi
  * 08/2020
  */
 @Component({
-selector: 'buildorder-component',
-templateUrl: './buildorder.component.html',
-styleUrls: ['./buildorder.component.css']
+    selector: 'buildorder-component',
+    templateUrl: './buildorder.component.html',
+    styleUrls: ['./buildorder.component.css'],
+    standalone: true,
+    imports: [ReactiveFormsModule, NgFor, NgIf]
 })
 export class BuildorderComponent implements OnInit, OnDestroy {
     // select or remove

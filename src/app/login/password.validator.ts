@@ -10,8 +10,9 @@ export const identityRevealedValidator: ValidatorFn = (control: FormGroup): Vali
 };
 
 @Directive({
-  selector: '[appIdentityRevealed]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: IdentityRevealedValidatorDirective, multi: true }]
+    selector: '[appIdentityRevealed]',
+    providers: [{ provide: NG_VALIDATORS, useExisting: IdentityRevealedValidatorDirective, multi: true }],
+    standalone: true
 })
 export class IdentityRevealedValidatorDirective implements Validator {
   validate(control: AbstractControl): ValidationErrors {
