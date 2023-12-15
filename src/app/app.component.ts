@@ -24,7 +24,8 @@ import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgClass, NgSwitchDefault } from '@
     changeDetection: ChangeDetectionStrategy.Default,
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [ReactiveFormsModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgClass, NgSwitchDefault, RouterLink, RouterOutlet]
+    // CommonModule imported in root from BrowserModule
+    imports: [ ReactiveFormsModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgClass, NgSwitchDefault, RouterLink, RouterOutlet]
 })
 export class AppComponent  {
     title = 'springbootjpaangular8';

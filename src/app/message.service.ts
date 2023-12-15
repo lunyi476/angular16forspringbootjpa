@@ -1,6 +1,6 @@
 import { Injectable }  from '@angular/core';
 import { MsgdialogComponent} from './dialogs/msgdialog.component';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeletedialogComponent } from './dialogs/deletedialog.component';
 
 
@@ -29,7 +29,9 @@ export class MessageService {
 
 
   openDialog(respMessage: string): void {
+   
     this.dialogRef = this.dialog.open(MsgdialogComponent,  
+    //  const dialogConfig = new MatDialogConfig();
     {
       panelClass: 'dialog-panel',
       data: { message: respMessage}

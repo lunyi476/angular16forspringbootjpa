@@ -1,6 +1,6 @@
-export interface MsgDialogData {
-    message: string;
-}
+//export interface MsgDialogData {
+  //  message: string;
+//}
 
 export const deletemsgqt = 'Do you want deleting this quote? '+ 
 'If only delete detail row, use delete button at detail box, '+
