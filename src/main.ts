@@ -23,18 +23,21 @@ import { AppComponent } from './app/app.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
 import { withInterceptorsFromDi, provideHttpClient, HttpClientJsonpModule } from '@angular/common/http';
 import { routesApp }  from './app/app-routing';
 import { provideRouter } from '@angular/router';
 
-bootstrapApplication(AppComponent, {
+
+
+bootstrapApplication(AppComponent, { // bootstrap Component (starting/root component)
     providers: [
         provideRouter(routesApp),
-        importProvidersFrom(ReactiveFormsModule, BrowserModule, MatDialogModule, HttpClientJsonpModule),
+        // BrowserModule exported CommonModule
+        // Message Service class (which is neither directive not component and cannot import module) uses MatDialogModule which has to be in root
+        importProvidersFrom( BrowserModule, MatDialogModule, HttpClientJsonpModule),   
         provideHttpClient(withInterceptorsFromDi()),
         provideAnimations()
     ]
 }).then ( (module) => { 
   window['rootInjector'] = module.injector;
-} ).catch(err => console.error(err));
+} ).catch( err => console.error(err));
