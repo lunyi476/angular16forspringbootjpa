@@ -1,3 +1,4 @@
+import { Type } from '@angular/compiler';
 import { Quotes } from './quotes';
 import { ToFromJSon } from './tofromjson';
 
@@ -113,13 +114,13 @@ export class COffers extends ToFromJSon  {
            return val;
     }
 
-    toJSON(): Offers {
+    toJSON(): Offers { // type will be removed after compiling to js. So, type is not usefule for rutime.  Promise type must be annotated
         // copy all fields from `this` to an empty object and return in
         return Object.assign({}, this);
     }
 
-   fromJSON(json: Offers|string): COffers {
-        if (typeof json === 'string') {
+   fromJSON(json: Offers| String): COffers { 
+      if (typeof json === 'string') {
           // if it's a string, parse it first
           return JSON.parse(json, COffers.reviver);
         } else {

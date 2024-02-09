@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core'; 
+import { Component, OnInit, OnDestroy, NgZone, OnChanges, SimpleChanges,inject, DestroyRef, afterNextRender, Input, ElementRef,  ViewContainerRef} from '@angular/core'; 
+//import { AfterRenderPhase } from '@angular/core';
 import { Quotes, fieldNamesInQuote, CQuotes } from '../quotes';
 import { FormGroup, AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { Offers, fieldNamesInOffer } from '../offers';
@@ -9,7 +10,6 @@ import { MessageService } from '../message.service';
 import {  Subscription } from 'rxjs';
 import { createHeaderGroup, addDetailGroup,resetDataToFormGroup, transferFormDataToPostData }  from '../formhelper';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 import { NgFor, NgIf } from '@angular/common';
 /**
  * @author: lyi
@@ -20,9 +20,9 @@ import { NgFor, NgIf } from '@angular/common';
     templateUrl: './quote.component.html',
     styleUrls: ['./quote.component.css'],
     standalone: true,
-    imports: [ReactiveFormsModule, NgFor, NgIf]
+    imports: [ReactiveFormsModule, NgFor, NgIf ]
 })
-export class QuoteComponent implements OnInit, OnDestroy {
+export class QuoteComponent implements OnInit, OnDestroy, OnChanges {
   // For help of dynamic print HTML form, initial it and prevent 'undefined'
   offerFormGroupNames: string[] =[];
   fieldquoteNames = fieldNamesInQuote;
@@ -48,7 +48,7 @@ export class QuoteComponent implements OnInit, OnDestroy {
   // initial it, otherwise 'undefined'
   offer: Offers[] =[];
   // Two way data binding
-  quoteFormGroup: FormGroup;
+  @Input() quoteFormGroup: FormGroup;
   // For delete local row of offer detail
   needDeleteRows: string[] = [];
   // For unsubscribe of Observables
@@ -124,16 +124,34 @@ export class QuoteComponent implements OnInit, OnDestroy {
    *
    */
   constructor (private httpService : HttptoserverService,
-  public dialog: MatDialog,  public msgService: MessageService, private route: ActivatedRoute) { 
+  public dialog: MatDialog,  public msgService: MessageService, private route: ActivatedRoute, 
+              private ngZone: NgZone, private _vcr: ViewContainerRef) { 
+
+    const destroyRef = inject(DestroyRef);
+    destroyRef.onDestroy(() => console.log("AAA"));
+
+    afterNextRender(() => {
+     console.log ("OPOP");
+    });
       
   }
   
   ngOnInit () {    
       this.quoteFormGroup = createHeaderGroup(this.fieldquoteNames, this.reqquoteNames);  
   }
-
   
+  // only works for @Input property
+  ngOnChanges(changes: SimpleChanges) {
+    for (const propName in changes) {
+      const chng = changes[propName];
+      const cur  = JSON.stringify(chng.currentValue);
+      const prev = JSON.stringify(chng.previousValue);
+      console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
+    }
+  }
+
   addOfferGroup () {
+    let b = this.ngZone.isStable;
     this.offerSize = addDetailGroup(this.quoteFormGroup, this.prefixOfferGroupName, 
       this.fieldofferNames, this.offerFormGroupNames, this.offerSize, this.reqofferNames);
   }

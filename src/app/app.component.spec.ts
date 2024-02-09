@@ -61,7 +61,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
     imports: [
         RouterTestingModule, MatDialogModule, BrowserAnimationsModule,
-        BrowserModule, ReactiveFormsModule, AppRoutingModule,
+        BrowserModule, ReactiveFormsModule, 
         HttpClientTestingModule,
         AppComponent
     ],

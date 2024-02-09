@@ -47,7 +47,8 @@ export class BuildorderComponent implements OnInit, OnDestroy {
     allOffersR = [] as Offers[];
     offerSizeR: number =0;
     RRowSelected = '';
-
+    // because every component instance is added to an injector's container, Angular always adds a component instance to its own injector
+    // you can use Angular dependency injection to reach a parent component.
     constructor(private router: Router, public navbarService: NavbarService,  
         private httpService : HttptoserverService, private msgService: MessageService,
         private changeDetector: ChangeDetectorRef, @Inject(forwardRef(() => 

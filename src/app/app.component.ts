@@ -1,5 +1,5 @@
 import { Router, RouterOutlet, RouterLink } from '@angular/router';
-import { ViewChild,  Component, ChangeDetectionStrategy,  ChangeDetectorRef} from '@angular/core'; 
+import { ViewChild,  Component, ChangeDetectionStrategy,  ChangeDetectorRef, ViewContainerRef, ElementRef} from '@angular/core'; 
 import { NavbarService } from './navbar.service';
 import { NavigationStart, NavigationEnd } from '@angular/router';
 import { QuoteComponent } from './quote/quote.component';
@@ -15,6 +15,10 @@ import { deletemsgqt, deletemsgod } from './dialogs/msg-dialog-data';
 import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgClass, NgSwitchDefault } from '@angular/common';
 
 /**
+ * regarding LView and TView:
+ * https://angularindepth.com/posts/1512/change-detection-and-component-trees-in-angular-applications
+ * 
+ * 
  * @author: lyi
  * 08/2020
  */
@@ -24,7 +28,8 @@ import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgClass, NgSwitchDefault } from '@
     changeDetection: ChangeDetectionStrategy.Default,
     styleUrls: ['./app.component.css'],
     standalone: true,
-    // CommonModule imported in root from BrowserModule
+    //providers: [{provide: NavbarService, useClass: NavbarService}],  //provided already in root
+    //template dependencies., for HTML template compiling and loading, not for class code part
     imports: [ ReactiveFormsModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgClass, NgSwitchDefault, RouterLink, RouterOutlet]
 })
 export class AppComponent  {
@@ -50,11 +55,15 @@ export class AppComponent  {
     currentOd : OrderComponent;
     // For retrieve active componennt instance from router directive
     @ViewChild("objRouterOutlet", { static: true }) routerOutlet: RouterOutlet;
-
+    // Dynamic create fields and assign value to this fields during creating Component
+    // it is better way to do it staticlly in class compiling time
     constructor(private router: Router, public navbarService: NavbarService,  
       private httpService : HttptoserverService, private msgService: MessageService, 
-      public changeDetector: ChangeDetectorRef
-       ) {  }
+      // ChangeDetectorRef and  ViewContainerRef does not depends on other injector so no need to be @Injectable and providers
+      public changeDetector: ChangeDetectorRef, private _vcr: ViewContainerRef     
+       ) { 
+
+        }
        
     //Listening routeroutlet
     onActivate() : void {

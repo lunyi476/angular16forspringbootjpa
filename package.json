@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "description": "Example project from an angular.io guide.",
   "license": "MIT",
+  "type": "module",
+  
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production  --vendor-chunk=true",
     "build-prod": "ng build --configuration production --deploy-url /",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

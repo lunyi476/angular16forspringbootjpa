@@ -91,3 +91,11 @@ import 'zone.js';  // Included with Angular CLI.
     ************** Test error ************************
 
       "allowJs": true, it will cause "Browser application bundle ....." error
+
+
+      *********** Error: error:0308010C:digital envelope routines::unsupported  *************
+
+      run  $env:NODE_OPTIONS = "--openssl-legacy-provider"
+      then run: ng serve
+
+

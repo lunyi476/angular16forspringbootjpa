@@ -96,7 +96,7 @@
                 </tr>
               <ng-container *ngFor="let a of offerFormGroupNames; index as k; ">
                     <tr  formGroupName = "{{a}}">
-                      <td><input    type="checkbox"  (click)="checkedBox(a, $event)"></td>
+                     <td><input    type="checkbox"  (click)="checkedBox(a, $event)"></td> 
                       <ng-container *ngFor="let field of fieldofferNames; index as i"> 
                         <td *ngIf="field !='request_no' && field !='offer_no' && field !='owner'" >
                           <input id = "{{a}}{{field}}" size="16"  formControlName="{{field}}">
